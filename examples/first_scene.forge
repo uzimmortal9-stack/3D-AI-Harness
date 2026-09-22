@@ -1,0 +1,79 @@
+// Forge3D first scene — exercises most of ForgeScript
+scene FirstScene {
+  background #1a1e26
+  ambient 0.30
+  camera Main { position 7 5 9 ; look_at 0 0.9 0 ; fov 48 }
+}
+
+light Key {
+  type sun
+  direction -0.45 -1 -0.4
+  color #fff1dc
+  intensity 1.25
+}
+
+material Stone {
+  base_color #9aa3ad
+  roughness 0.85
+}
+
+material Lava {
+  base_color #ff5a1f
+  emission 0.9
+  roughness 0.4
+}
+
+material Wood {
+  base_color #8a5a33
+  roughness 0.7
+  texture stripes 64 10
+}
+
+mesh Ground {
+  primitive grid
+  size 14 14
+  subdivisions 12
+  material Stone
+  uv planar
+  body box { static true }
+}
+
+mesh Tower {
+  primitive cylinder
+  radius 0.7
+  height 2.6
+  segments 20
+  position -2.2 1.3 0
+  material Wood
+}
+
+mesh Orb {
+  primitive sphere
+  radius 0.8
+  rings 16
+  segments 28
+  position 0 1.1 -1.6
+  material Lava
+  subdivide 0
+}
+
+mesh Knot {
+  primitive torus
+  radius 0.7
+  tube 0.24
+  segments 28
+  rings 14
+  position 2.4 1.2 0.6
+  rotation 20 0 35
+  material Stone
+  smooth 1 0.3
+}
+
+mesh Ball {
+  primitive capsule
+  radius 0.4
+  height 0.9
+  position 0.4 0.85 1.9
+  material Wood
+  body sphere { mass 1.0 ; restitution 0.7 ; velocity 0 2 0 }
+}

@@ -1,0 +1,78 @@
+// Forge3D mini-game: "Orb Drop" — physics + logic + audio in one scene
+scene OrbDrop {
+  background #10161d
+  ambient 0.32
+  camera GameCam { position 9 6 10 ; look_at 0 1.2 0 ; fov 52 ; active true }
+}
+
+light Sun { type sun ; direction -0.4 -1 -0.3 ; color #ffe9c9 ; intensity 1.25 }
+
+material Grass { base_color #4d7a3a ; roughness 0.95 ; texture noise 64 4 }
+material Rock  { base_color #7d8590 ; roughness 0.9 ; metallic 0.05 }
+material Gold  { base_color #d9a441 ; metallic 0.9 ; roughness 0.3 }
+material Red   { base_color #b3382e ; roughness 0.5 }
+
+mesh Arena {
+  primitive grid
+  size 16 16
+  subdivisions 12
+  material Grass
+  uv planar
+  body box { static true }
+}
+
+mesh Pillar1 {
+  primitive cylinder
+  radius 0.5
+  height 2.2
+  segments 16
+  position -3 1.1 -2
+  material Rock
+  body box { static true }
+}
+
+mesh Pillar2 {
+  primitive box
+  size 1.4 1.4 1.4
+  position 3 0.7 -3
+  rotation 0 30 0
+  material Rock
+  subdivide 1
+  body box { static true }
+}
+
+mesh Arch {
+  primitive torus
+  radius 1.6
+  tube 0.18
+  segments 32
+  rings 10
+  position 0 1.6 -5
+  rotation 90 0 0
+  material Gold
+}
+
+mesh Ball1 {
+  primitive sphere
+  radius 0.5
+  rings 14
+  segments 24
+  position -1 3.5 1
+  material Red
+  body sphere { mass 1.2 ; restitution 0.75 ; velocity 1.5 0 0 }
+}
+
+mesh Ball2 {
+  primitive sphere
+  radius 0.35
+  rings 12
+  segments 20
+  position 1.5 5 -1
+  material Gold
+  body sphere { mass 0.8 ; restitution 0.85 ; velocity -1 0 1 }
+}
+
+sound Bounce { synth chord 330 0.25 ; volume 0.7 }
+sound Win    { synth sine 660 0.6 ; volume 0.6 }
+
+script "orb_drop_logic.py"

@@ -1,0 +1,6 @@
+# Forge3D v0.1 — core needs only numpy. GUI extras are optional.
+numpy>=1.24
+
+# optional: interactive windowed mode (python -m forge3d.cli gui)
+# glfw>=2.5
+# PyOpenGL>=3.1
