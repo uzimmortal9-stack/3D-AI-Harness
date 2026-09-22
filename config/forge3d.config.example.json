@@ -1,0 +1,6 @@
+{
+  "provider": "openai",
+  "model": "gpt-4o-mini",
+  "api_key": "PUT_YOUR_KEY_HERE_ONLY_IN_forge3d.config.json",
+  "base_url": null
+}
